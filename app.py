@@ -3,7 +3,7 @@
 
 import datetime
 
-# Database of snacks
+
 snacks = [
     {"id": 1, "name": "Popcorn", "price": 5000},
     {"id": 2, "name": "Soda", "price": 1000},
@@ -12,20 +12,19 @@ snacks = [
     {"id": 5, "name": "Hotdog", "price": 8000}
 ]
 
-# Store all orders
+
 orders = []
 
-# --- Authentication system ---
 def login():
     print("🎫 Welcome to Cinema Snack Ordering System 🎫")
     username = input("Enter your username: ").strip()
     if not username:
         print("⚠️ Username cannot be empty!")
         return login()
-    print(f"✅ Hello, {username.capitalize()}! Let's get started.\n")
+    print(f" Hello, {username.capitalize()}! Let's get started.\n")
     return username
 
-# --- Show available snacks ---
+
 def show_snacks():
     print("\n🍿 Available Snacks:")
     print("-" * 30)
@@ -33,7 +32,7 @@ def show_snacks():
         print(f"{item['id']}. {item['name']} - TSh {item['price']}")
     print("-" * 30)
 
-# --- Add an order ---
+
 def place_order():
     cart = []
     while True:
@@ -65,13 +64,13 @@ def place_order():
     return cart, order_total
 
 # --- Checkout and save order ---
+
 def checkout(username, cart, total):
     confirm = input("Confirm purchase? (y/n): ").lower()
     if confirm != 'y':
         print("❌ Order cancelled.")
         return
 
-    # Create order record
     order = {
         "user": username,
         "cart": cart,
@@ -80,7 +79,7 @@ def checkout(username, cart, total):
     }
     orders.append(order)
 
-    # Save to file (receipt)
+    # Saves to file (receipt)
     with open("orders.txt", "a") as f:
         f.write(f"User: {order['user']}\n")
         f.write(f"Time: {order['time']}\n")
