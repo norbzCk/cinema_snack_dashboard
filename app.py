@@ -1,5 +1,3 @@
-# Cinema Snack Ordering System
-# Author: norbzCk
 
 import datetime
 
@@ -38,7 +36,7 @@ def place_order():
     while True:
         show_snacks()
         try:
-            choice = int(input("Select a snack number (0 to finish): "))
+            choice = int(input("Select a snack number (0 to finish): "))                
             if choice == 0:
                 break
             snack = next((s for s in snacks if s["id"] == choice), None)
@@ -63,7 +61,6 @@ def place_order():
     print(f"\n💰 Order Total: TSh {order_total}")
     return cart, order_total
 
-# --- Checkout and save order ---
 
 def checkout(username, cart, total):
     confirm = input("Confirm purchase? (y/n): ").lower()
@@ -79,7 +76,6 @@ def checkout(username, cart, total):
     }
     orders.append(order)
 
-    # Saves to file (receipt)
     with open("orders.txt", "a") as f:
         f.write(f"User: {order['user']}\n")
         f.write(f"Time: {order['time']}\n")
@@ -90,7 +86,6 @@ def checkout(username, cart, total):
 
     print("💳 Payment successful! Receipt saved to 'orders.txt'. Enjoy your snacks! 🎥🍿") # later i will implement that user gets receipt
 
-# --- View past orders ---
 def view_orders():
     if not orders:
         print("\n🕒 No orders made yet.")
@@ -102,7 +97,6 @@ def view_orders():
             print(f"- {item['name']} x{item['qty']} = TSh {item['total']}")
         print(f"Total: TSh {order['total']}")
 
-# --- Main program ---
 def main():
     username = login()
     while True:
